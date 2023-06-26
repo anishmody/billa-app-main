@@ -4,8 +4,6 @@ import styled from "styled-components";
 import ProductCard from "../components/ProductCard";
 import { Product } from "@/interfaces/Product";
 
-const API_URL = "http://localhost:3001/api/plan-list";
-
 const Container = styled.div`
   background: white;
   width: 80vw;
@@ -45,15 +43,15 @@ const ProductListingPage: React.FC = () => {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    const fetchProducts = async () => {
+    async function fetchProducts() {
       try {
-        const response = await axios.post(API_URL, {});
+        const response = await axios.post("/api/product-list");
         setProducts(response.data || []);
         setLoading(false);
       } catch (error) {
-        console.error("Error fetching products:", error);
+        console.error("An error occurred while fetching products:", error);
       }
-    };
+    }
 
     fetchProducts();
   }, []);
@@ -69,7 +67,7 @@ const ProductListingPage: React.FC = () => {
         {" "}
         Electricity <Badge>{products.length}</Badge>{" "}
       </Button>
-      <span style={{ display: "block" }}> 
+      <span style={{ display: "block" }}>
         Initial recommendations are based on average medium usage as determined
         by relevant energy regulators, please view the information hover next to
         the estimated cost box for more information. For a more accurate
