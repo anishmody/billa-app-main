@@ -15,12 +15,20 @@ const CardContainer = styled.div`
   margin-top: 30px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   position: relative;
+
+  @media (max-width: 768px) {
+    margin-top: 10px;
+  }
 `;
 
 const ProviderImage = styled.img`
   width: 150px;
   height: auto;
   margin-bottom: 10px;
+
+  @media (max-width: 768px) {
+    width: 100px;
+  }
 `;
 
 const RoundButton = styled.button`
@@ -31,6 +39,11 @@ const RoundButton = styled.button`
   font-size: 16px;
   border: none;
   cursor: pointer;
+
+  @media (max-width: 768px) {
+    font-size: 14px;
+    padding: 8px 16px;
+  }
 `;
 
 const Footer = styled.footer`
