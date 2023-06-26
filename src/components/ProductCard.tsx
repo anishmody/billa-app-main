@@ -1,5 +1,4 @@
 import { Product } from "@/interfaces/Product";
-import { ReactNode } from "react";
 import styled from "styled-components";
 import Panel from "./Panel";
 import { FaLightbulb, FaSolarPanel } from "react-icons/fa";
@@ -9,8 +8,6 @@ interface ProductCardProps {
   product: Product;
 }
 
-const buttonSpanStyle = {};
-
 const CardContainer = styled.div`
   background-color: white;
   border-radius: 4px;
@@ -18,22 +15,20 @@ const CardContainer = styled.div`
   margin-top: 30px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   position: relative;
+
+  @media (max-width: 768px) {
+    margin-top: 10px;
+  }
 `;
 
 const ProviderImage = styled.img`
   width: 150px;
   height: auto;
   margin-bottom: 10px;
-`;
 
-const PlanName = styled.h3`
-  font-size: 18px;
-  margin-bottom: 10px;
-`;
-
-const PlanDescription = styled.p`
-  font-size: 14px;
-  color: #666;
+  @media (max-width: 768px) {
+    width: 100px;
+  }
 `;
 
 const RoundButton = styled.button`
@@ -44,6 +39,11 @@ const RoundButton = styled.button`
   font-size: 16px;
   border: none;
   cursor: pointer;
+
+  @media (max-width: 768px) {
+    font-size: 14px;
+    padding: 8px 16px;
+  }
 `;
 
 const Footer = styled.footer`
@@ -85,7 +85,8 @@ const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
       <div style={{ display: "flex", position: "absolute", top: -16 }}>
         <SpanButton default>
           <FaLightbulb />
-          {product.energy_type.charAt(0).toUpperCase() + product.energy_type.slice(1) }
+          {product.energy_type.charAt(0).toUpperCase() +
+            product.energy_type.slice(1)}
         </SpanButton>
         <SpanButton default>
           {" "}
@@ -108,10 +109,7 @@ const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
             <SpanButton default>
               29% Less than the current refrence price
             </SpanButton>
-            {[
-                        
-              product.contract_length,product.exit_fee
-            ].map((el, index) => (
+            {[product.contract_length, product.exit_fee].map((el, index) => (
               <span key={index} style={{ textAlign: "center" }}>
                 <MdDoneOutline color="#24337a" />
                 {el}
@@ -131,22 +129,19 @@ const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
           </div>
         </div>
         <div>
-           This Origin Advantage Variable - NSW offer is currently 29 % less than
+          This Origin Advantage Variable - NSW offer is currently 29 % less than
           the Reference Price. This includes a $100 credit including GST
           prorated daily and applied to your bills over your 12 months plan. If
           you end your plan early, any unpaid credit is forfeited. For an
           average household using 3900 kWh/year, the estimated annual cost of
           this electricity plan is $987 (incl. GST) in the Ausgrid network with
           a single rate tariff.
-          
         </div>
       </div>
 
       <Footer>
         <div>
-          {[
-             product.cooling_off_period
-          ].map((el, index) => (
+          {[product.cooling_off_period].map((el, index) => (
             <span key={index} style={{ textAlign: "center" }}>
               <MdDoneOutline color="#24337a" />
               {el}
