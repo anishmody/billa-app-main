@@ -1,5 +1,6 @@
 import axios from 'axios';
 import { NextApiRequest, NextApiResponse } from 'next';
+import jwtDecode from 'jwt-decode';
 
 // API endpoint for fetching products
 const API_URL = 'https://devcore02.cimet.io/v1/plan-list';
@@ -29,11 +30,15 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
       );
 
       authToken = tokenResponse.data.data.token;
-      const expirationTime = Date.now() + tokenResponse.data.data.expires_in * 1000; // Calculate the expiration time
+
+      // Decode the token to get the expiration time
+      const decodedToken: { exp: number } = jwtDecode(authToken);
+      const expirationTime = decodedToken.exp * 1000; // Convert expiration time to milliseconds
 
       // Store the token and its expiration time in the cache
       tokenCache[userId] = { token: authToken, expirationTime };
     }
+
 
     const requestBody = {
       session_id:
