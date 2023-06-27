@@ -9,4 +9,6 @@ export interface Product {
     energy_type: string;
     exit_fee: string;
     cooling_off_period: string; 
+    benefit_term: string;
+    
 }

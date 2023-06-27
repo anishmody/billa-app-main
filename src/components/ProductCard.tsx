@@ -129,7 +129,7 @@ const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
           </div>
         </div>
         <div>
-          This Origin Advantage Variable - NSW offer is currently 29 % less than
+        {product.plan_name} - currently 29 % less than
           the Reference Price. This includes a $100 credit including GST
           prorated daily and applied to your bills over your 12 months plan. If
           you end your plan early, any unpaid credit is forfeited. For an
@@ -150,7 +150,7 @@ const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
           <p>
             The estimated cost includes any applicable welcome credits, bonuses,
             and conditional discounts (if applicable) which apply within the
-            first 12 months of the plan.
+            first {product.benefit_term} of the plan.
           </p>
         </div>
         <div>
